@@ -10,12 +10,14 @@
 </head>
 <body>
 <div th:insert="~{fragments/navbar :: navbar}"></div>
+
 <div class="container mt-5">
-    <form th:action="@{/type}" th:object="${typeForm}" method="post">
+    <form th:action="@{/type/{id}(id=${ type.id })}" th:object="${type}" method="post">
+        <input type="text" hidden  name="_method" value="PUT" >
         <label>Libelle</label>
-        <input type="text" th:field="*{libelle}" placeholder="Your name" class="form-control" />
+        <input type="text" th:field="*{libelle}" placeholder="Your name" class="form-control"  />
         <br>
-        <button type="submit" class="btn btn-success">Send</button>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
 </div>
 </body>
