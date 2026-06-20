@@ -6,8 +6,40 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body>
-        <h1>ICI C Assurance</h1>
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-5">
+    <a class="btn btn-success" th:href="@{'/assurance/new'}">Add</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom Client</th>
+            <th>Numero</th>
+            <th>Montant</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="a : ${ assurances }">
+            <td data-th-text="${ a.id}"></td>
+            <td data-th-text="${ a.nomClient }"></td>
+            <td data-th-text="${ a.numero}"></td>
+            <td data-th-text="${ a.montant }">35</td>
+            <td>
+                <form th:action="@{/assurance/{id}(id=${ a.id })}" method="post">
+                    <input  hidden name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+
+                <a class="btn btn-primary" th:href="@{'/assurance/edit/'+${ a.id }}">Update</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

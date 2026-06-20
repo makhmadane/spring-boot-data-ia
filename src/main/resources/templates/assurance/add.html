@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:insert="~{fragments/navbar :: navbar}"></div>
+<div class="container mt-5">
+    <form th:action="@{/assurance}" th:object="${assurance}" method="post">
+        <label>Libelle</label>
+        <input type="text" th:field="*{nomClient}" placeholder="Your name" class="form-control" />
+        <br>
+        <label>Numero</label>
+        <input type="text" th:field="*{numero}" placeholder="Your name" class="form-control" />
+        <br>
+        <label>Montant</label>
+        <input type="text" th:field="*{montant}" placeholder="Your name" class="form-control" />
+        <br>
+        <button type="submit" class="btn btn-success">Send</button>
+    </form>
+</div>
+</body>
+</html>
