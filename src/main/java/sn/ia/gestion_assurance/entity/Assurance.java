@@ -22,4 +22,8 @@ public class Assurance {
 
     @Column
     protected double montant;
+
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    protected Type type;
 }

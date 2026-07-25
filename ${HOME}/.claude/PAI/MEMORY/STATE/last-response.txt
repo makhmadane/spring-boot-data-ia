@@ -1,0 +1,23 @@
+Build réussi. Récapitulatif de ce qui a été implémenté :
+
+## Ce qui a été fait
+
+**Corrections préalables**
+- `application.properties` avait un caractère non-UTF8 qui cassait la compilation (`filtering ... failed with MalformedInputException`) — corrigé.
+
+**Relation manquante corrigée**
+- `Assurance.type` (`@ManyToOne`) ajouté — l'assurance est désormais rattachée à un `Type` (`type_id` en DB, nullable, `ddl-auto=update` le créera automatiquement).
+
+**Nouveaux packages**
+- `dto/request/` : `AssuranceRequest`, `TypeRequest` — validation via `@NotBlank`, `@Positive`
+- `dto/response/` : `AssuranceResponse`, `TypeResponse` — mapping via méthode statique `from(entity)`, jamais l'entité JPA exposée directement
+- `service/` : `AssuranceService`, `TypeService` — toute la logique métier + `@Transactional`, plus de repository appelé depuis un contrôleur
+- `exception/` : `ResourceNotFoundException`, `ApiError` (record), `GlobalExceptionHandler` (`@RestControllerAdvice`) — 404 propre pour ressource introuvable, 400 avec détail champ-par-champ pour échec de validation
+- `controller/api/` : `AssuranceApiController` (`/api/assurances`), `TypeApiController` (`/api/types`) — CRUD complet avec `ResponseEntity`, codes HTTP corrects (201 + `Location` sur POST, 204 sur DELETE, 404 automatique via l'exception), pagination native (`Pageable` → `?page=0&size=10&sort=nomClient`)
+- `pom.xml` : ajout de `spring-boot-starter-validation` et `springdoc-openapi-starter-webmvc-ui` (Swagger UI disponible sur `/swagger-ui.html` une fois l'app lancée)
+
+**Non touché volontairement**
+- Les contrôleurs Thymeleaf existants (`AssuranceController`, `TypeController`) et leurs vues sont intacts et fonctionnent toujours — l'API REST vit à côté, pas à la place.
+- Les formulaires HTML n'ont pas été mis à jour pour choisir un `Type` — dis-moi si tu veux que j'ajoute ce select.
+
+Pour tester : lance l'app (nécessite Postgres actif sur `localhost:5432/data_ia_assurance`), puis `GET http://localhost:8090/api/types`, 

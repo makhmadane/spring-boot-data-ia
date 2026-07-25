@@ -1,0 +1,4 @@
+{"timestamp":"2026-07-24T01:48:25-07:00","rating":5,"session_id":"eba1b0d8-0104-48a6-8d63-54c4e9175f6f","source":"implicit","sentiment_summary":"Inference failed: Failed to parse JSON response","confidence":0.3}
+{"timestamp":"2026-07-24T01:49:05-07:00","rating":5,"session_id":"50980a40-e93f-4858-863d-2de4dac2c9f9","source":"implicit","sentiment_summary":"Inference failed: Failed to parse JSON response","confidence":0.3}
+{"timestamp":"2026-07-24T01:57:08-07:00","rating":5,"session_id":"50980a40-e93f-4858-863d-2de4dac2c9f9","source":"implicit","sentiment_summary":"Inference failed: Failed to parse JSON response","confidence":0.3}
+{"timestamp":"2026-07-24T02:11:32-07:00","rating":5,"session_id":"50980a40-e93f-4858-863d-2de4dac2c9f9","source":"implicit","sentiment_summary":"Inference failed: Timeout after 15000ms","confidence":0.3}
